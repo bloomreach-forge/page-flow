@@ -34,7 +34,7 @@ definitions:
             hipposysedit:uri: http://www.onehippo.com/jcr/pageflow/nt/1.0
             /event:
               jcr:primaryType: hipposysedit:field
-              hipposysedit:mandatory: false
+              hipposysedit:mandatory: true
               hipposysedit:multiple: false
               hipposysedit:ordered: false
               hipposysedit:path: pageflow:event
@@ -110,7 +110,7 @@ definitions:
             hipposysedit:uri: http://www.onehippo.com/jcr/pageflow/nt/1.0
             /stateid:
               jcr:primaryType: hipposysedit:field
-              hipposysedit:mandatory: false
+              hipposysedit:mandatory: true
               hipposysedit:multiple: false
               hipposysedit:ordered: false
               hipposysedit:path: pageflow:stateid
@@ -119,7 +119,7 @@ definitions:
               hipposysedit:validators: [non-empty, required]
             /name:
               jcr:primaryType: hipposysedit:field
-              hipposysedit:mandatory: false
+              hipposysedit:mandatory: true
               hipposysedit:multiple: false
               hipposysedit:ordered: false
               hipposysedit:path: pageflow:name
@@ -241,7 +241,7 @@ definitions:
             hipposysedit:uri: http://www.onehippo.com/jcr/pageflow/nt/1.0
             /flowid:
               jcr:primaryType: hipposysedit:field
-              hipposysedit:mandatory: false
+              hipposysedit:mandatory: true
               hipposysedit:multiple: false
               hipposysedit:ordered: false
               hipposysedit:path: pageflow:flowid
@@ -250,7 +250,7 @@ definitions:
               hipposysedit:validators: [non-empty, required]
             /name:
               jcr:primaryType: hipposysedit:field
-              hipposysedit:mandatory: false
+              hipposysedit:mandatory: true
               hipposysedit:multiple: false
               hipposysedit:ordered: false
               hipposysedit:path: pageflow:name
@@ -402,7 +402,7 @@ definitions:
             hipposysedit:uri: http://www.onehippo.com/jcr/pageflow/nt/1.0
             /name:
               jcr:primaryType: hipposysedit:field
-              hipposysedit:mandatory: false
+              hipposysedit:mandatory: true
               hipposysedit:multiple: false
               hipposysedit:ordered: false
               hipposysedit:path: pageflow:name
