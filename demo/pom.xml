@@ -12,7 +12,7 @@
   <description>Page Flow Demo</description>
   <groupId>org.onehippo.forge.pageflow</groupId>
   <artifactId>pageflow-demo</artifactId>
-  <version>3.0.0</version>
+  <version>3.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!-- 
