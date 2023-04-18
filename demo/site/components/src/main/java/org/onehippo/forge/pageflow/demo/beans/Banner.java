@@ -26,7 +26,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 public class Banner extends BaseDocument {
 	@HippoEssentialsGenerated(internalName = "pageflowdemo:title")
 	public String getTitle() {
-		return getProperty("pageflowdemo:title");
+		return getSingleProperty("pageflowdemo:title");
 	}
 
 	@HippoEssentialsGenerated(internalName = "pageflowdemo:content")

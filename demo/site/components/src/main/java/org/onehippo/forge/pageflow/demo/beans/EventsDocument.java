@@ -1,6 +1,6 @@
 package org.onehippo.forge.pageflow.demo.beans;
 /*
- * Copyright 2014-2018 Hippo B.V. (http://www.onehippo.com)
+ * Copyright 2023 Bloomreach, Inc. (https://www.bloomreach.com/)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class EventsDocument extends HippoDocument {
      */
     @HippoEssentialsGenerated(internalName = "pageflowdemo:title")
     public String getTitle() {
-        return getProperty(TITLE);
+        return getSingleProperty(TITLE);
     }
 
     /**
@@ -56,7 +56,7 @@ public class EventsDocument extends HippoDocument {
      */
     @HippoEssentialsGenerated(internalName = "pageflowdemo:date")
     public Calendar getDate() {
-        return getProperty(DATE);
+        return getSingleProperty(DATE);
     }
 
     /**
@@ -66,7 +66,7 @@ public class EventsDocument extends HippoDocument {
      */
     @HippoEssentialsGenerated(internalName = "pageflowdemo:introduction")
     public String getIntroduction() {
-        return getProperty(INTRODUCTION);
+        return getSingleProperty(INTRODUCTION);
     }
 
     /**
@@ -96,7 +96,7 @@ public class EventsDocument extends HippoDocument {
      */
     @HippoEssentialsGenerated(internalName = "pageflowdemo:location")
     public String getLocation() {
-        return getProperty(LOCATION);
+        return getSingleProperty(LOCATION);
     }
 
     /**
@@ -106,7 +106,7 @@ public class EventsDocument extends HippoDocument {
      */
     @HippoEssentialsGenerated(internalName = "pageflowdemo:enddate")
     public Calendar getEndDate() {
-        return getProperty(END_DATE);
+        return getSingleProperty(END_DATE);
     }
 
 }
