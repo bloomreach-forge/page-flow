@@ -111,7 +111,7 @@ add the following dependencies:
     </dependency>
 ```
 
-### Configure the default Page Flow Control Handler (in Hippo CMS v13.x only)
+### Configure the default Page Flow Control Handler (in Hippo CMS v13.x+ only)
 
 Since Hippo CMS v13, import the following under `/hst:********/hst:configurations/hst:default/hst:sitemapitemhandlers` through CMS Console:
 

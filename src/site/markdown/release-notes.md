@@ -25,6 +25,11 @@
 
 ### Release Notes of 3.x
 
+#### 3.0.1
+
+- [HIPFORGE-443](https://issues.onehippo.com/browse/FORGE-443) [Page Flow] Upgrade dependencies to patch security vulnerabilities
+
+
 #### 3.0.0
 
 - [HIPFORGE-442](https://issues.onehippo.com/browse/FORGE-442) [Page Flow] Upgrade for v14 compatibility
