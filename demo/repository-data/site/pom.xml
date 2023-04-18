@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.onehippo.forge.pageflow</groupId>
     <artifactId>pageflow-demo-repository-data</artifactId>
-    <version>3.0.1</version>
+    <version>4.0.1-SNAPSHOT</version>
   </parent>
 
   <name>Page Flow Demo Repository Data For Site</name>
