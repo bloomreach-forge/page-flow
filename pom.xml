@@ -21,7 +21,7 @@
   <description>Page Flow</description>
   <groupId>org.onehippo.forge.pageflow</groupId>
   <artifactId>pageflow</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <version>3.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://github.com/bloomreach-forge/page-flow</url>
 
@@ -33,15 +33,15 @@
     <servlet-api.version>3.0.1</servlet-api.version>
     <javax.jcr.version>2.0</javax.jcr.version>
 
-    <hippo.commons.version>13.0.0</hippo.commons.version>
-    <hippo.services.version>13.0.0</hippo.services.version>
-    <hippo.repository.version>13.0.0</hippo.repository.version>
-    <hippo.cms.version>13.0.0</hippo.cms.version>
-    <hippo.hst.version>13.0.0</hippo.hst.version>
+    <hippo.commons.version>14.0.1</hippo.commons.version>
+    <hippo.services.version>14.0.1</hippo.services.version>
+    <hippo.repository.version>14.0.1</hippo.repository.version>
+    <hippo.cms.version>14.0.1</hippo.cms.version>
+    <hippo.hst.version>14.0.1</hippo.hst.version>
 
-    <spring.version>5.1.1.RELEASE</spring.version>
+    <spring.version>5.3.22</spring.version>
     <spring-statemachine.version>2.0.3.RELEASE</spring-statemachine.version>
-    <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
+    <forge.exdocpickerbase.version>7.0.0</forge.exdocpickerbase.version>
 
     <commons-lang.version>2.6</commons-lang.version>
 

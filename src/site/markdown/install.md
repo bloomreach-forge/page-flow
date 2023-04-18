@@ -84,7 +84,7 @@ Find the proper version in the [Release Notes](release-notes.html).
 
 ### Dependencies in Content Delivery Web Application
 
-In either `site/components/pom.xml` in Hippo CMS v13 or `site/pom.xml` in the earlier versions,
+In either `site/components/pom.xml` in projects created on brXM v13 or later or `site/pom.xml` in projects created on earlier versions,
 add the following dependency:
 
 ```xml
@@ -96,7 +96,7 @@ add the following dependency:
 
 ### Dependencies in Content Authoring Web Application
 
-In either `cms-dependencies/pom.xml` in Hippo CMS v13 or `cms/pom.xml` in the earlier versions,
+In either `cms-dependencies/pom.xml` in projects created on brXM v13 or later or `cms/pom.xml` in projects created on earlier versions,
 add the following dependencies:
 
 ```xml

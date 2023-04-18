@@ -17,12 +17,18 @@
 
 ### Compatibility
 
-| Plugin Version        | Hippo CMS Release Version |
-|: --------------------:|:-------------------------:|
-| 2.x                   | 13.x                      |
-| 1.x                   | 12.x                      |
+| Plugin Version | Hippo CMS Release Version |
+|:--------------:|:-------------------------:|
+|      3.x       |           14.x            |
+|      2.x       |           13.x            |
+|      1.x       |           12.x            |
 
-### Release Notes of 2.x
+### Release Notes of 3.x
+
+#### 3.0.0
+
+- [HIPFORGE-442](https://issues.onehippo.com/browse/FORGE-442) [Page Flow] Upgrade for v14 compatibility
+
 
 #### 2.0.0
 
