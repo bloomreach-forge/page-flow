@@ -93,6 +93,11 @@
       </roles>
       <timezone>-5</timezone>
     </developer>
+    <developer>
+      <name>Nicholas Pavao</name>
+      <email>nicholas.pavao@bloomreach.com</email>
+      <timezone>-5</timezone>
+    </developer>
   </developers>
 
   <scm>
