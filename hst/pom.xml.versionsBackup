@@ -20,12 +20,12 @@
   <parent>
     <groupId>org.onehippo.forge.pageflow</groupId>
     <artifactId>pageflow</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1-SNAPSHOT</version>
   </parent>
 
-  <name>Page Flow Core</name>
-  <description>Page Flow Core</description>
-  <artifactId>pageflow-core</artifactId>
+  <name>Page Flow HST</name>
+  <description>Page Flow HST</description>
+  <artifactId>pageflow-hst</artifactId>
 
   <dependencies>
 
@@ -36,33 +36,39 @@
     </dependency>
 
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
+      <groupId>javax.jcr</groupId>
+      <artifactId>jcr</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-repository-api</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-cms7-commons</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
+      <groupId>org.onehippo.forge.pageflow</groupId>
+      <artifactId>pageflow-core</artifactId>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-messaging</artifactId>
+      <groupId>org.onehippo.cms7.hst</groupId>
+      <artifactId>hst-api</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.springframework.statemachine</groupId>
-      <artifactId>spring-statemachine-core</artifactId>
+      <groupId>org.onehippo.cms7.hst</groupId>
+      <artifactId>hst-commons</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
