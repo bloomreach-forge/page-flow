@@ -30,7 +30,7 @@ for a visitor based on the visitor's Page Flow instance lifecycle.
 
 Also, **Page Flow Definition ID** must be configured in a channel, mount or sitemap item level.
 So, Page Flow Module will initialize and manage a Page Flow instance based on the configured Page Flow Definition ID.
-\
+
 ### Configure **Page Flow HstSiteMapItemHandler ID** (```defaultpageflowcontrolhandler``` by default) for a mount or sitemap item
 
 One ore more [HstSiteMapItemHandler](https://www.onehippo.org/library/concepts/hst-configuration-model/advanced/sitemapitem-handlers.html)s

@@ -4,52 +4,42 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.onehippo.forge.pageflow</groupId>
-    <artifactId>pageflow-demo-site</artifactId>
-    <version>4.0.0</version>
+    <artifactId>pageflow-demo</artifactId>
+    <version>4.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>pageflow-demo-webapp</artifactId>
+  <artifactId>pageflow-demo-essentials</artifactId>
   <packaging>war</packaging>
-  <name>Page Flow Demo Site Webapp</name>
-  <description>Page Flow Demo Site Webapp</description>
-
+  <name>Page Flow Demo Essentials</name>
+  <description>Page Flow Demo Essentials</description>
   <dependencies>
     <dependency>
-      <groupId>org.onehippo.forge.pageflow</groupId>
-      <artifactId>pageflow-demo-repository-data-site</artifactId>
-      <version>${project.version}</version>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-essentials-dashboard</artifactId>
+      <version>${essentials.version}</version>
+      <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.onehippo.forge.pageflow</groupId>
-      <artifactId>pageflow-demo-repository-data-webfiles</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.onehippo.forge.pageflow</groupId>
-      <artifactId>pageflow-demo-components</artifactId>
-      <version>4.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.onehippo.cms7.hst.toolkit-resources.addon</groupId>
-      <artifactId>hst-addon-hcm-site</artifactId>
-      <version>${hippo.hst.version}</version>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-essentials-dashboard-dependencies</artifactId>
+      <version>${essentials.version}</version>
+      <type>pom</type>
     </dependency>
   </dependencies>
-
   <build>
     <resources>
       <resource>
-        <filtering>false</filtering>
         <directory>src/main/java</directory>
+        <filtering>false</filtering>
         <includes>
           <include>**/*.properties</include>
         </includes>
       </resource>
       <resource>
-        <filtering>true</filtering>
         <directory>src/main/resources</directory>
+        <filtering>true</filtering>
       </resource>
     </resources>
-    <finalName>site</finalName>
+    <finalName>essentials</finalName>
     <plugins>
       <plugin>
         <groupId>org.codehaus.cargo</groupId>

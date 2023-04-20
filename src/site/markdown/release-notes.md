@@ -19,11 +19,17 @@
 
 | Plugin Version | Hippo CMS Release Version |
 |:--------------:|:-------------------------:|
+|      4.x       |           15.x            |
 |      3.x       |           14.x            |
 |      2.x       |           13.x            |
 |      1.x       |           12.x            |
 
 ### Release Notes of 3.x
+
+#### 4.0.0
+
+- [HIPFORGE-444](https://issues.onehippo.com/browse/FORGE-444) [Page Flow] Upgrade for v15 compatibility
+
 
 #### 3.0.0
 
