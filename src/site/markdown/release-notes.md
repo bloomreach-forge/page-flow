@@ -30,10 +30,6 @@
 
 - [HIPFORGE-444](https://issues.onehippo.com/browse/FORGE-444) [Page Flow] Upgrade for v15 compatibility
 
-#### 3.0.1
-
-- [HIPFORGE-443](https://issues.onehippo.com/browse/FORGE-443) [Page Flow] Upgrade dependencies to patch security vulnerabilities
-
 
 #### 3.0.0
 
