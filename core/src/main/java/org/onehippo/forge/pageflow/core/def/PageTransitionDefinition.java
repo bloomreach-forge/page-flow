@@ -37,7 +37,7 @@ public interface PageTransitionDefinition extends Serializable {
     /**
      * Compares the specified object with this <code>PageTransitionDefinition</code> for equality.
      * @param o the object to be compared for equality with this <code>PageTransitionDefinition</code>
-     * @return <tt>true</tt> if the specified object is equal to this <code>PageTransitionDefinition</code>
+     * @return true if the specified object is equal to this <code>PageTransitionDefinition</code>
      */
     boolean equals(Object o);
 

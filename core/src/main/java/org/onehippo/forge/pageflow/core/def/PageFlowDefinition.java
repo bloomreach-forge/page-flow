@@ -65,7 +65,7 @@ public interface PageFlowDefinition extends Serializable {
     /**
      * Compares the specified object with this <code>PageFlowDefinition</code> for equality.
      * @param o the object to be compared for equality with this <code>PageFlowDefinition</code>
-     * @return <tt>true</tt> if the specified object is equal to this <code>PageFlowDefinition</code>
+     * @return true if the specified object is equal to this <code>PageFlowDefinition</code>
      */
     boolean equals(Object o);
 

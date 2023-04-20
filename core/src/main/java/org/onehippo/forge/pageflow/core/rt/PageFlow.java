@@ -111,7 +111,7 @@ public interface PageFlow extends Serializable {
     /**
      * Compares the specified object with this <code>PageFlow</code> for equality.
      * @param o the object to be compared for equality with this <code>PageFlow</code>
-     * @return <tt>true</tt> if the specified object is equal to this <code>PageFlow</code>
+     * @return true if the specified object is equal to this <code>PageFlow</code>
      */
     boolean equals(Object o);
 

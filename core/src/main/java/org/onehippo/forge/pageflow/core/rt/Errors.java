@@ -57,7 +57,7 @@ public interface Errors extends Serializable {
     /**
      * Compares the specified object with this <code>Errors</code> for equality.
      * @param o the object to be compared for equality with this <code>Errors</code>
-     * @return <tt>true</tt> if the specified object is equal to this <code>Errors</code>
+     * @return true if the specified object is equal to this <code>Errors</code>
      */
     boolean equals(Object o);
 

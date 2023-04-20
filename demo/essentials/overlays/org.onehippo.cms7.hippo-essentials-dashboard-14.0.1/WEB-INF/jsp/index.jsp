@@ -19,39 +19,39 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bloomreach Essentials</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/components/hippo-theme/dist/css/main.css?v=14.0.1"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/components/angular-ui-tree/dist/angular-ui-tree.css?v=14.0.1"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/components/hippo-theme/dist/css/main.css?v=15.2.2"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/components/angular-ui-tree/dist/angular-ui-tree.css?v=15.2.2"/>
   <script type="application/javascript">
     window.SERVER_URL = '<%=request.getScheme()+"://"+request.getServerName()+':'+request.getServerPort()%>';
   </script>
 
   <%-- HIPPO THEME DEPS --%>
-  <script src="${pageContext.request.contextPath}/components/jquery/dist/jquery.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/components/chosen-js/chosen.jquery.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/components/angular/angular.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/components/angular-animate/angular-animate.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/components/angular-aria/angular-aria.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/components/angular-chosen-localytics/dist/angular-chosen.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/components/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/js/lib/angular-ui-tree.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/components/hippo-theme/dist/js/main.js?v=14.0.1"></script>
+  <script src="${pageContext.request.contextPath}/components/jquery/dist/jquery.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/components/chosen-js/chosen.jquery.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/components/angular/angular.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/components/angular-animate/angular-animate.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/components/angular-aria/angular-aria.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/components/angular-chosen-localytics/dist/angular-chosen.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/components/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/js/lib/angular-ui-tree.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/components/hippo-theme/dist/js/main.js?v=15.2.2"></script>
 
   <%-- ESSENTIALS --%>
-  <script src="${pageContext.request.contextPath}/components/angular-ui-router/release/angular-ui-router.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/components/angular-sanitize/angular-sanitize.js?v=14.0.1"></script>
+  <script src="${pageContext.request.contextPath}/components/angular-ui-router/release/angular-ui-router.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/components/angular-sanitize/angular-sanitize.js?v=15.2.2"></script>
 
-  <script src="${pageContext.request.contextPath}/js/app.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/js/routes.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/js/directives.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/js/controllers.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/dashboard/api/services.js?v=14.0.1"></script>
-  <script src="${pageContext.request.contextPath}/dashboard/api/directives.js?v=14.0.1"></script>
+  <script src="${pageContext.request.contextPath}/js/app.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/js/routes.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/js/directives.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/js/controllers.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/dashboard/api/services.js?v=15.2.2"></script>
+  <script src="${pageContext.request.contextPath}/dashboard/api/directives.js?v=15.2.2"></script>
 
   <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/png"/>
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/png"/>
 </head>
 <body id="container"  ng-cloak>
-<div class="hidden" ng-include="'${pageContext.request.contextPath}/components/hippo-theme/dist/images/hippo-icon-sprite.svg?v=14.0.1'"></div>
+<div class="hidden" ng-include="'${pageContext.request.contextPath}/components/hippo-theme/dist/images/hippo-icon-sprite.svg?v=15.2.2'"></div>
 <essentials-notifier ng-show="feedbackMessages.length" messages="feedbackMessages" ng-class="{'log-visible':feedbackMessages.length && addLogClass}"></essentials-notifier>
 
 
@@ -66,7 +66,7 @@
       </button>
       <span ng-show="TOTAL_NEEDS_ATTENTION > 0" class="badge badge-primary notification-badge">{{TOTAL_NEEDS_ATTENTION}}</span>
       <a class="navbar-brand" href="${pageContext.request.contextPath}"
-         title="version: 14.0.1">Essentials</a>
+         title="version: 15.2.2">Essentials</a>
       <p class="navbar-text navbar-title">
         {{getPageTitle()}}
       </p>

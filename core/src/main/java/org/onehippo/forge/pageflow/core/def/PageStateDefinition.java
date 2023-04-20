@@ -60,7 +60,7 @@ public interface PageStateDefinition extends Serializable {
     /**
      * Compares the specified object with this <code>PageStateDefinition</code> for equality.
      * @param o the object to be compared for equality with this <code>PageStateDefinition</code>
-     * @return <tt>true</tt> if the specified object is equal to this <code>PageStateDefinition</code>
+     * @return true if the specified object is equal to this <code>PageStateDefinition</code>
      */
     boolean equals(Object o);
 
