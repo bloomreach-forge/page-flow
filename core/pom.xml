@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2023 Bloomreach, Inc. (https://www.bloomreach.com/)
+  Copyright 2024 Bloomreach, Inc. (https://www.bloomreach.com/)
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.onehippo.forge.pageflow</groupId>
     <artifactId>pageflow</artifactId>
-    <version>4.0.0</version>
+    <version>5.0.0-SNAPSHOT</version>
   </parent>
 
   <name>Page Flow Core</name>
@@ -30,8 +30,8 @@
   <dependencies>
 
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
 

@@ -1,11 +1,11 @@
 /*
- *  Copyright 2023 Bloomreach, Inc. (https://www.bloomreach.com/)
+ *  Copyright 2024 Bloomreach, Inc. (https://www.bloomreach.com/)
  */
 <'hippo'='http://www.onehippo.org/jcr/hippo/nt/2.0.4'>
 <'hippostd'='http://www.onehippo.org/jcr/hippostd/nt/2.0'>
 <'hippostdpubwf'='http://www.onehippo.org/jcr/hippostdpubwf/nt/1.0'>
 <'hippotranslation'='http://www.onehippo.org/jcr/hippotranslation/nt/1.0'>
-<'pageflow'='http://www.onehippo.com/jcr/pageflow/nt/1.0'> 
+<'pageflow'='http://www.onehippo.com/jcr/pageflow/nt/1.0'>
 
 [pageflow:basedocument] > hippo:document, hippostd:publishableSummary, hippostdpubwf:document
   orderable

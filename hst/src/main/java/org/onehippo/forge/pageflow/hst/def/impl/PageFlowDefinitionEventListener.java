@@ -1,5 +1,5 @@
 /*
- *  Copyright 2017 Hippo B.V. (http://www.onehippo.com)
+ *  Copyright 2024 Hippo B.V. (http://www.onehippo.com)
  */
 package org.onehippo.forge.pageflow.hst.def.impl;
 
