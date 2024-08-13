@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2015-2024 Bloomreach
+
+  Licensed under the Apache License, Version 2.0 (the  "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS"
+  BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE document PUBLIC "-//Apache Software Foundation//DTD XDOC 1.0//EN" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
+<document>
+  <properties>
+    <title>Bloomreach Page Flow Module</title>
+  </properties>
+  <body>
+
+    <section name="Page Flow Module">
+
+      <subsection name="Introduction">
+        <p>
+          <strong>Page Flow Module</strong> provides a generic way to define and manage
+          states of pages through Page Flow Documents in Bloomreach CMS authoring
+          application, and a flexible way to implement <em>Page Flow Interactions</em> in
+          Bloomreach CMS delivery-tier application. </p>
+        <p> What does it mean by <em>Page Flow Interactions</em>? </p>
+        <p>
+          It is an application interaction style that comprises multiple steps for users
+          to navigate, view or fill in the forms to complete a business-meaningful action.
+        </p>
+        <p>
+          Suppose a visitor is coming from a link in a marketing campagin E-Mail message.
+          The link can possibly lead the visitor
+          to the landing page first. If the visitor feels okay with the landing page
+          content, then the visitor might want to
+          follow the next page link. The navigation might lead to multiple step pages such
+          as selecting a product, entering
+          visitor's information, and so on.
+        </p>
+        <p><strong>Page Flow Module</strong> provides a <em>solution</em> to manage and
+          implement this kind of <em>multi-step-pages</em> user interactions very easily in
+          Hipppo CMS.</p>
+      </subsection>
+
+      <subsection name="Why Page Flow Module?">
+        <p>Why should Page Flow Module be introduced then? Can developers not use <a
+            href="https://xmdocumentation.bloomreach.com/library/enterprise/enterprise-features/enterprise-forms/enterprise-forms.html">
+          Enterprise Forms</a> or something similar?.</p>
+        <p>If you asked this as well, that's really a good question!</p>
+        <p>You can use <a
+            href="https://xmdocumentation.bloomreach.com/library/enterprise/enterprise-features/enterprise-forms/enterprise-forms.html">Enterprise
+          Forms</a> or something similar for that kind of <em>multi-step</em>
+          interactions, but that's not <em>multi-step-pages</em> actually because that kind of <em>
+          multi-step</em> interaction solutions are working in an <code>HstComponent</code>
+          window level, not in multiple, totally-separated HST pages.</p>
+
+        <p>The <em>multi-step</em> interaction solution in an <code>HstComponent</code> window level has the following disadvantages:</p>
+
+        <ul>
+          <li>It is not possible to use a different HST page layout in a step page because the solution works in an <code>HstComponent</code> window level.</li>
+          <li>It is not so flexible for developers to implement each step page because all the interactions must be configured or implemented
+            in the specific <em>multi-step</em> interaction framework such as <a href="https://xmdocumentation.bloomreach.com/library/enterprise/enterprise-features/enterprise-forms/enterprise-forms.html">Enterprise Forms</a>.</li>
+          <li>Business users cannot configure different <a href="https://xmdocumentation.bloomreach.com/library/enterprise/enterprise-features/targeting/targeting.html">Relevance</a> personalization on each step HST page separately (e.g, setting a different banner above the form in a step)
+            because the solution resides only in single <code>HstComponent</code> window.</li>
+          <li>Business users cannot configure a conversion goal in a specific step HST page (e.g, final application form page step)
+            for an <a href="https://xmdocumentation.bloomreach.com/library/end-user-manual/experiments/experiments.html">Experiment</a> because the solution resides only in single <code>HstComponent</code> window.</li>
+        </ul>
+
+        <p><strong>Page Flow Module</strong> provides solutions for all those problems listed above.</p>
+      </subsection>
+
+      <subsection name="Features">
+        <ul>
+          <li>Generic Page Flow Definitions as documents in Bloomreach CMS authoring application.</li>
+          <li>Generic Page Flow Handling Runtime, which uses <a href="https://projects.spring.io/spring-statemachine/">Spring Statemachine</a> library under the hood.</li>
+          <li>Generic HST SiteMap Item Handler for automatic Page Flow resolution and redirection.</li>
+          <li>Generic ChannelInfo interface for easy creation of campaign channel.</li>
+          <li>Generic JCR Observation Event Listener to refresh Page Flow definitions automatically.</li>
+        </ul>
+      </subsection>
+
+      <subsection name="Module Overview">
+        <h4 name="pageflow-core"><strong>pageflow-core</strong> JAR module</h4>
+        <ul>
+          <li>Generic APIs for both Page Flow definitions and web application runtime,
+            leverating <a href="https://projects.spring.io/spring-statemachine/">Spring Statemachine</a> library under the hood.</li>
+        </ul>
+
+        <h4 name="pageflow-core"><strong>pageflow-hst</strong> JAR module</h4>
+        <ul>
+          <li>HST-2 specific <code>PageFlowControl</code> implementation</li>
+          <li>HST-2 specific <code>SiteMapItemHandler</code> implementation,
+            <code>org.onehippo.forge.pageflow.hst.sitemapitemhandler.PageFlowControlHstSiteMapItemHandler</code>,
+            handling active <code>PageFlow</code> and automatic redirection based on the states of <code>PageFlow</code>.</li>
+          <li>Default <code>ChannelInfo</code> interface for Channel Manager.</li>
+          <li>Generic JCR Observation Event Listener implementation to invalidate cached Page Flow definitions.</li>
+        </ul>
+
+        <h4 name="pageflow-core"><strong>pageflow-repository</strong> JAR module</h4>
+        <ul>
+          <li>Page Flow Module specific JCR namespace definition</li>
+          <li>Page Flow Definition document namespace definition</li>
+        </ul>
+
+        <h4 name="pageflow-core"><strong>pageflow-cms</strong> JAR module</h4>
+        <ul>
+          <li>Page Flow Definition document editor plugins</li>
+        </ul>
+      </subsection>
+    </section>
+
+  </body>
+</document>
