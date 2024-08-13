@@ -36,7 +36,7 @@
     <project.build.javaVersion>17</project.build.javaVersion>
 
     <spring-statemachine.version>2.0.3.RELEASE</spring-statemachine.version>
-    <forge.exdocpickerbase.version>9.0.0-SNAPSHOT</forge.exdocpickerbase.version>
+    <forge.exdocpickerbase.version>9.0.0</forge.exdocpickerbase.version>
 
     <extension.wagon-svn.version>1.12</extension.wagon-svn.version>
 
