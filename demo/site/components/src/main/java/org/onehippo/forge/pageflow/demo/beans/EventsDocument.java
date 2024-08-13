@@ -1,6 +1,6 @@
 package org.onehippo.forge.pageflow.demo.beans;
 /*
- * Copyright 2023 Bloomreach, Inc. (https://www.bloomreach.com/)
+ * Copyright 2024 Bloomreach, Inc. (https://www.bloomreach.com/)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
