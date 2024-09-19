@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2015-2024 Bloomreach
+
+  Licensed under the Apache License, Version 2.0 (the  "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS"
+  BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE document PUBLIC "-//Apache Software Foundation//DTD XDOC 1.0//EN" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
+<document>
+  <properties>
+    <title>Bloomreach Page Flow Module</title>
+  </properties>
+  <body>
+
+    <section name="Developer's How-to">
+
+      <subsection name="Introduction">
+        <p>
+          <strong>Page Flow Module</strong> simplifies Page State definitions, Page State Transitions based on Events, Error Handling per Page State and metadata handlings in web applications.
+        </p>
+        <p>
+          Normally, each Page State is mapped to an HST Page with an unique URI path info. You may have multiple, different <code>HstComponent</code>s in each HST Page like you do in normal HST-2 web application development.
+        </p>
+        <p>
+          As <strong>Page Flow Module</strong> aims to cover visitors' interactions across (multi-step) HST Pages, it is not interested in providing too tightly coupled framework with MVC form/action handling, unlike Spring Web Flow for example.
+        </p>
+        <p>
+          In that sense, it is the <code>HstComponent</code>s responsibility to send an event to trigger Page State Transitions. <strong>Page Flow Module</strong> would not send events or trigger transitions on a Page Flow instance automatically based on <code>HstComponent</code>'s status changes.
+        </p>
+        <p>
+          Also, it is not an interest of <strong>Page Flow Module</strong> to provide a <em>bridging</em> solution between <code>HstComponent</code> and other web flow control frameworks such as Spring Web Flow because that kind of approaches would simply force the flow interactions to stay in the specific <code>HstComponent</code> only, causing inflexibility in page/component compositions and significant limitations in Relevance personalization and Experiment (A/B Testing).
+        </p>
+      </subsection>
+
+      <subsection name="Page Flow Definition">
+        <p>First of all, you need to create and publish a <strong>Page Flow Definition</strong> which is applied to a Microsite campaign channel or selected sitemap items, like the following example document in CMS:</p>
+        <img src="images/demoflowdef1.png" alt="Demo Page Flow Definition 1" />
+
+        <h4>Fields of Page Flow Definition</h4>
+        <table>
+          <thead>
+            <tr>
+              <th width="200px">Field name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td>Human readable name of Page Flow Definition</td>
+            </tr>
+            <tr>
+              <td>Flow ID</td>
+              <td>Unique Identifier of Page Flow Definition, used by system</td>
+            </tr>
+            <tr>
+              <td>Description</td>
+              <td>Informative description of Page Flow Definition</td>
+            </tr>
+            <tr>
+              <td>Page States</td>
+              <td>Page State Compounds field</td>
+            </tr>
+            <tr>
+              <td>Event Definitions</td>
+              <td>Event Definitions field</td>
+            </tr>
+            <tr>
+              <td>Global Page Transitions</td>
+              <td>Globally applied Page Transitions on each Page State</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Fields of Each Page State Compound</h4>
+        <table>
+          <thead>
+            <tr>
+              <th width="200px">Field name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td>Human readable name of Page State Definition</td>
+            </tr>
+            <tr>
+              <td>Page State ID</td>
+              <td>Unique Identifier in a Page Flow Definition, used by system</td>
+            </tr>
+            <tr>
+              <td>Path</td>
+              <td>Logical (URI) Path Info to be interpreted by application</td>
+            </tr>
+            <tr>
+              <td>Metadata</td>
+              <td>Extra custom metadata, which can be used by application</td>
+            </tr>
+            <tr>
+              <td>Page Transitions</td>
+              <td>Page Transition Compounds field</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Fields of Each Page Transition Compound</h4>
+        <table>
+          <thead>
+            <tr>
+              <th width="200px">Field name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Event</td>
+              <td>The source Event, to be selected from <strong>Event Definitions</strong></td>
+            </tr>
+            <tr>
+              <td>Target</td>
+              <td>The target Page State to transition, to be selected from defined <strong>Page State</strong>s</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Fields of Each Event Definition Compound</h4>
+        <table>
+          <thead>
+            <tr>
+              <th width="200px">Field name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td>The unique identifier of an event in Page Flow Definition</td>
+            </tr>
+            <tr>
+              <td>Value</td>
+              <td>The human readable name of an event</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          The above <strong>Page Flow Definition</strong> document defines all the page states, events and transitions in the document editor. It shows all the definitions including <em>Page State</em>s, <em>Event</em>s and <em>Page Transition</em>s in flat lists. But, due to the <strong>Page Transition</strong> fields, each of which consists of a source <strong>Event</strong> and a target <strong>Page State</strong>, the whole <strong>Page Flow</strong> can represents the following <em>Finite State Machine</em> diagram:
+        </p>
+        <img src="images/demoflowfsm1.png" alt="Demo Finite State Machine 1" />
+      </subsection>
+
+      <subsection name="Page State Definition and HST Page">
+        <p>
+          As shown above, each <strong>Page State</strong> has <strong>Path</strong> field which is normally mapped to the URI path of an <strong>HST Page</strong>. So, while a <strong>Page Flow</strong> instance for a visitor is alive, the visitor should be passing along a specific <strong>Page State</strong> based on events and transitions. By default in HST-2 web application, each <strong>Page State</strong> is represented by an <strong>HST Page</strong>, which means that the request from a visitor hits an <strong>HST SiteMap Item</strong> and the associated <strong>HST Page</strong> is being rendered for the <strong>Page State</strong>.
+        </p>
+        <p>
+          This default behavior in HST-2 web application has the following advantages:
+        </p>
+
+        <ul>
+          <li>You can separate each step of the visitor's interactions into a separate <strong>HST Page</strong>, so it is more flexible when composing each page with different components/templates and personalization.</li>
+          <li>You can even set a specific step page URI as an Experiment goal easily.</li>
+          <li>In an <strong>HST Page</strong>, one of <code>HstComponent</code>s may process an action to retrieve the current <code>PageFlow</code> to send an event to trigger an automatic transition. Once a transition occurs by the event, the default <strong>Page Flow HstSiteMapItemHandler</strong> will redirect the page to the next step automatically. Therefore, <code>HstComponent</code>s do not have to handle any physical navigation/redirection handling by themselves any more as it is handled by <strong>Page Flow Module</strong>.</li>
+        </ul>
+
+        <p><em>Note</em>: It is possible to customize the default HST-2 based Page Flow Control and interpret the logical <strong>Path</strong> information of each <strong>Page State</strong> in application-specific ways.</p>
+      </subsection>
+
+      <subsection name="Events and Page State Transitions">
+        <p>Let's take a look at the <code>CampaignQuoteComponent.java</code>, as an example, shown in the first step landing page in the demo project:</p>
+
+        <div class="brush: java">
+          <source><![CDATA[
+          public class CampaignQuoteComponent extends AbstractCampaignComponent {
+
+              private static final Pattern US_ZIP_PATTERN = Pattern.compile("^\\d{5}$");
+
+              @Override
+              public void doAction(HstRequest request, HstResponse response) throws HstComponentException {
+                  final String zip = StringUtils.trim(request.getParameter("zip"));
+
+                  final PageFlow pageFlow = getPageFlow();
+                  final CampaignModel campaignModel = new CampaignModel();
+                  campaignModel.setZip(zip);
+                  pageFlow.setAttribute(CampaignConstants.DEFAULT_MODEL_NAME, campaignModel);
+
+                  if (StringUtils.isNotEmpty(zip)) {
+                      final Matcher m = US_ZIP_PATTERN.matcher(zip);
+
+                      if (m.matches()) {
+                          pageFlow.sendEvent(CampaignConstants.EVENT_START_QUOTE);
+                      }
+                  }
+              }
+
+          }
+        ]]></source>
+        </div>
+
+        <p><em>CampaignQuoteComponent#doAction()</em> method is invoked when a visitor clicks on <em></em>Start!<em></em> button in the first landing page, doing the following:</p>
+        <ul>
+          <li>Read the only form input, "zip" code.</li>
+          <li>Retrieve the current <code>PageFlow</code> instance which was resolved and provided by the <strong>Page Flow Module</strong> automatically.</li>
+          <li>Instantiate a new domain model object, <code>CampaignModel</code>, set the zip code and store it into <code>pageFlow</code>, so that you can retrieve the domain model object later in other <strong>Page State</strong>s.</li>
+          <li>Finally, if everything is okay, it sends an event named <code>CampaignConstants.EVENT_START_QUOTE</code> (which should be same as one of the event names in the <strong>Page Flow Definition</strong> document).</li>
+          <li>Under the hood, <strong>Page Flow Module</strong> process the event and make transition(s) if needed. In this example, it will be transitioned to the next step ("Select a Plan") automatically.</li>
+        </ul>
+
+        <p>In summary,</p>
+        <ul>
+          <li><code>HstComponent</code>s should not try to redirect pages in most cases, but instead it simply retrieves the currently resolved <code>PageFlow</code> and sends an event to trigger transitions.</li>
+          <li>To send an event from an <code>HstComponent</code>, invoke <code>PageFlow#sendEvent(String eventName)</code>. Then <strong>Page Flow Module</strong> will automatically handle the event and make transition(s) if needed, as you defined the flow in the <strong>Page Flow Definition</strong> document.</li>
+        </ul>
+      </subsection>
+
+      <subsection name="APIs to Get Access to PageFlow and PageStates">
+        <p>You can retrieve the automatically resolved <code>PageFlow</code> instance like the following:</p>
+        <div class="brush: java">
+          <source><![CDATA[
+          protected PageFlow getPageFlow() {
+              final HstRequestContext requestContext = RequestContextProvider.get();
+              final PageFlowControl flowControl = PageFlowControl.getDefault(requestContext.getServletRequest());
+              return flowControl.getPageFlow(requestContext.getServletRequest());
+          }
+        ]]></source>
+        </div>
+
+        <p><em>HstComponent</em> code should retrieve the <code>PageFlowControl</code> by invoking <code>PageFlowControl#getDefault(HttpServletRequest)</code> first, and get the <code>PageFlow</code> throught <code>PageFlowControl#getPageFlow(HttpServletRequest)</code>.</p>
+
+        <p><strong>Page Flow Module</strong> automatically finds a <strong>PageFlow</strong> instance for the visitor by retrieving a stored one or instantiate a new one if it is a new visitor.</p>
+
+        <p>You can also retrieve all the defined <strong>PageState</strong> s from the <strong>PageFlow</strong>.</p>
+
+        <p>The following FreeMarker template example is from the navigation status bar at the page bottom in the demo project:</p>
+        <div class="brush: html">
+          <source><![CDATA[
+          <#assign curPageState=pageFlow.pageState>
+          <#assign curPageStateIndex=curPageState.index>
+
+          <div class="text-left">
+            <#list pageFlow.pageStates as pageState>
+              <#if pageState.index < curPageStateIndex>
+                <span class="label label-success">${pageState.name}</span>
+              <#elseif pageState.index == curPageStateIndex>
+                <span class="label label-primary">${pageState.name}</span>
+              <#else>
+                <span class="label label-default">${pageState.name}</span>
+              </#if>
+            </#list>
+          </div>
+        ]]></source>
+        </div>
+
+        <p><em>PageFlow#getPageState()</em> returns the current <strong>PageState</strong>. <code>PageFlow#getPageStates()</code> returns a collection of all the defined <strong>PageState</strong> s.</p>
+
+        <p>For more details, see <a href="apidocs/index.html">JavaDocs</a>.</p>
+      </subsection>
+
+      <subsection name="APIs to Store Domain Objects in Page Flow">
+        <p>A Page Flow for a visitor is a longer journey than simple webpage. So, you might want to store some domain specific data for the visitor's journey. e.g, multi-step application form data.</p>
+        <p>As shown above, you may use <code>PageFlow#setAttribute(String, Object)</code> to store and retrieve arbitrary objects for your application.</p>
+        <p>For more details, see <a href="apidocs/index.html">JavaDocs</a>.</p>
+      </subsection>
+
+      <subsection name="APIs for Error Handling in Page State">
+        <p>In an <code>HstComponent</code>, you might want to store all the collected errors while processing the form and use those error objects in view templates.</p>
+        <p>To store error objects, you can use <code>PageState#addErrors(Errors)</code>, <code>PageState#getErrorsMap()</code>, etc.</p>
+        <p>For more details, see <a href="apidocs/index.html">JavaDocs</a>.</p>
+
+        <p>A good example for error handling <code>HstComponent</code> and FreeMarker template can be found in the following sources in the demo project:</p>
+        <ul>
+          <li>
+            <a href="https://github.com/bloomreach-forge/page-flow/blob/master/demo/site/src/main/java/org/onehippo/forge/pageflow/demo/campaign/components/CampaignApplicationFormComponent.java">CampaignApplicationFormComponent.java</a>
+          </li>
+          <li>
+            <a href="https://github.com/bloomreach-forge/page-flow/blob/master/demo/repository-data/webfiles/src/main/resources/site/freemarker/campaignbase/campaign-application-form.ftl">campaign-application-form.ftl</a>
+          </li>
+        </ul>
+      </subsection>
+    </section>
+
+  </body>
+</document>

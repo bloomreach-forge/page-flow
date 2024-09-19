@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2015-2024 Bloomreach
+
+  Licensed under the Apache License, Version 2.0 (the  "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS"
+  BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE document PUBLIC "-//Apache Software Foundation//DTD XDOC 1.0//EN" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
+<document>
+  <properties>
+    <title>Bloomreach Page Flow Module</title>
+  </properties>
+  <body>
+
+    <section name="Installation">
+
+      <subsection name="Bloomreach Forge Maven Repository Configuration">
+        <p>
+          Make sure you have the Forge Maven2 repository reference in the root <code>pom.xml</code> of your project.
+        </p>
+        <div class="brush: xml">
+          <source><![CDATA[
+          <repositories>
+
+            <!-- SNIP -->
+
+            <repository>
+              <id>hippo-maven2</id>
+              <name>Hippo Maven 2 Repository</name>
+              <url>https://maven.onehippo.com/maven2-forge//</url>
+            </repository>
+
+            <!-- SNIP -->
+
+          </repositories>
+        ]]></source>
+        </div>
+      </subsection>
+
+      <subsection name="Dependency Management">
+        <p>Add all the dependencies in the root <code>pom.xml</code> of your project.</p>
+        <p>You also need to add <code>forge.pageflow.version</code> property in the <code>properties</code> section. Find the proper version in the <a href="release-notes.html">Release Notes</a>.</p>
+        <div class="brush: xml">
+          <source><![CDATA[
+            <!-- SNIP -->
+
+            <dependencyManagement>
+
+              <!-- SNIP -->
+
+              <dependencies>
+
+                <!-- SNIP -->
+
+                <!-- NOTE: You should set a property named 'forge.pageflow.version' to a version of this plugin! -->
+
+                <dependency>
+                  <groupId>org.onehippo.forge.pageflow</groupId>
+                  <artifactId>pageflow-repository</artifactId>
+                  <version>${forge.pageflow.version}</version>
+                </dependency>
+
+                <dependency>
+                  <groupId>org.onehippo.forge.pageflow</groupId>
+                  <artifactId>pageflow-cms</artifactId>
+                  <version>${forge.pageflow.version}</version>
+                </dependency>
+
+                <dependency>
+                  <groupId>org.onehippo.forge.pageflow</groupId>
+                  <artifactId>pageflow-hst</artifactId>
+                  <version>${forge.pageflow.version}</version>
+                </dependency>
+
+                <!-- SNIP -->
+
+              </dependencies>
+
+              <!-- SNIP -->
+
+            </dependencyManagement>
+          ]]></source>
+        </div>
+      </subsection>
+
+      <subsection name="Dependencies in Content Delivery Web Application">
+        <p>In either <code>site/components/pom.xml</code> in projects created on brXM v13 or later or <code>site/pom.xml</code> in projects created on earlier versions, add the following dependency:</p>
+        <div class="brush: xml">
+          <source><![CDATA[
+            <dependency>
+              <groupId>org.onehippo.forge.pageflow</groupId>
+              <artifactId>pageflow-hst</artifactId>
+            </dependency>
+          ]]></source>
+        </div>
+      </subsection>
+
+      <subsection name="Dependencies in Content Authoring Web Application">
+        <p>In either <code>cms-dependencies/pom.xml</code> in projects created on brXM v13 or later or <code>cms/pom.xml</code> in projects created on earlier versions, add the following dependencies:</p>
+        <div class="brush: xml">
+          <source><![CDATA[
+            <dependency>
+              <groupId>org.onehippo.forge.pageflow</groupId>
+              <artifactId>pageflow-repository</artifactId>
+            </dependency>
+
+            <dependency>
+              <groupId>org.onehippo.forge.pageflow</groupId>
+              <artifactId>pageflow-cms</artifactId>
+            </dependency>
+          ]]></source>
+        </div>
+      </subsection>
+
+      <subsection name="Configure the default Page Flow Control Handler (in Bloomreach CMS v13.x+ only)">
+        <p>Since Bloomreach CMS v13, import the following under <code>/hst:********/hst:configurations/hst:default/hst:sitemapitemhandlers</code> through CMS Console:</p>
+        <div>
+          <source><![CDATA[
+          /defaultpageflowcontrolhandler:
+            jcr:primaryType: hst:sitemapitemhandler
+            auto.redirection.enabled: true
+            enabled: true
+            hst:sitemapitemhandlerclassname: org.onehippo.forge.pageflow.hst.sitemapitemhandler.DefaultPageFlowControlHstSiteMapItemHandler
+        ]]></source>
+        </div>
+        <p>
+        <strong>Note</strong>: The sitemap item handler above (<code>defaultpageflowcontrolhandler</code>) will be used and explained in the <a href="configure.html">Configuration</a> page in detail.
+        </p>
+      </subsection>
+
+    </section>
+
+  </body>
+</document>

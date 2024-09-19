@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2015-2024 Bloomreach
+
+  Licensed under the Apache License, Version 2.0 (the  "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS"
+  BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE document PUBLIC "-//Apache Software Foundation//DTD XDOC 1.0//EN" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
+<document>
+  <properties>
+    <title>Bloomreach Page Flow Module</title>
+  </properties>
+  <body>
+
+    <section name="Configuration">
+
+      <subsection name="Introduction">
+        <p>
+          Configurations include two parts:
+        </p>
+        <ol>
+          <li>Configure <strong>Page Flow HstSiteMapItemHandler ID</strong> (<code>defaultpageflowcontrolhandler</code> by default) for a mount or sitemap item.</li>
+          <li>Configure <strong>Page Flow Definition ID</strong> for a channel, mount or sitemap item.</li>
+          <li>(Optional) Configure <strong>Page Flow Channel Info</strong> for a channel.</li>
+        </ol>
+        <p><strong>Page Flow HstSiteMapItemHandler ID</strong> (<code>defaultpageflowcontrolhandler</code> by default) must be configured in either mount level or sitemap item level. So, Page Flow Module can handle automatic initiation, redirection, etc. for a visitor based on the visitor's Page Flow instance lifecycle.</p>
+        <p>Also, <strong>Page Flow Definition ID</strong> must be configured in a channel, mount or sitemap item level. So, Page Flow Module will initialize and manage a Page Flow instance based on the configured Page Flow Definition ID.</p>
+      </subsection>
+
+      <subsection
+        name="Configure Page Flow HstSiteMapItemHandler ID (defaultpageflowcontrolhandler by default) for a mount or sitemap item">
+        <p>One ore more <a href="https://xmdocumentation.bloomreach.com/library/concepts/hst-configuration-model/advanced/sitemapitem-handlers.html">HstSiteMapItemHandlers</a> can be configured in either mount level (<code>@hst:defaultsitemapitemhandlerids</code> property) or sitemap item level (<code>@hst:sitemapitemhandlerids</code> property).</p>
+
+        <p>It could be very convenient to configure the <code>HstSiteMapItemHandler</code> ID value in the mount level because the same <code>HstSiteMapItemHandler</code>s will be applied to all the resolved sitemap items under the same resolved mount. So, you don't need to configure the <code>HstSiteMapItemHandler</code> ID for each sitemap item configuration again and again. This is extremely useful when you have a channel that serves a Page Flow Module driven request processing. e.g, "Identity Protection Product Campaign Microsite Channel".</p>
+
+        <p>However, if you want to control it in more granular level by having some sitemap items for other page serving, and having some other sitemap items for Page Flow Module driven request processing, then you might want to configure the the <code>HstSiteMapItemHandler</code> ID value in each sitemap item level for some selected sitemap items. e.g, "<code>/campaign1</code>", "<code>/campaign1/_any_</code>", ... In this case, make sure that you configured the <strong>Page Flow HstSiteMapItemHandler ID</strong> on all the possible sitemap items for Page Flow Module driven requests.</p>
+
+
+        <h4>Scenario 1: Configure Page Flow HstSiteMapItemHandler ID in Mount Level</h4>
+        <p>Suppose you have an HST Mount configuration at <code>/hst:hst/hst:hosts/dev-localhost/localhost/hst:root/campaign1</code> which is associated with a channel called "Campaign 1".</p>
+        <p>If you want the channel to be controlled by the Page Flow module, then simply add the registered HstSiteMapItemHandler name to the <code>@hst:defaultsitemapitemhandlerids</code> of the mount configuration like the following:</p>
+        <div>
+          <source><![CDATA[
+          /campaign1:
+            jcr:primaryType: hst:mount
+            hst:defaultsitemapitemhandlerids: [defaultpageflowcontrolhandler]
+        ]]></source>
+        </div>
+
+
+        <h4>Scenario 2: Configure <strong>Page Flow HstSiteMapItemHandler ID</strong> in SiteMap Item Level</h4>
+        <p>You can configure the <code>@hst:sitemapitemhandlerids</code> property on each sitemap item separately in this scenario. If you set the property on specific sitemap items, any requests onto the sitemap items will be controlled by <strong>Page Flow Module</strong>. Otherwise, Page Flow module wouldn't do anything for the other sitemap items.</p>
+
+        <div>
+          <source><![CDATA[
+          /payment:
+            jcr:primaryType: hst:sitemapitem
+            hst:sitemapitemhandlerids: [defaultpageflowcontrolhandler]
+        ]]></source>
+        </div>
+      </subsection>
+
+      <subsection name="Configure Page Flow Definition ID for a channel, mount or sitemap item">
+        <p>Once you published a <strong>Page Flow Definition</strong> document like shown in the <a href="demoproject.html">Demo Project</a>, you can associate the <strong>Page Flow Definition ID</strong> value (the <strong>Flow ID</strong> field value in the editor) to a channel, a mount or a sitemap item.</p>
+        <p>The default <strong>PageFlowControl</strong> implementation (<code>org.onehippo.forge.pageflow.hst.sitemapitemhandler.DefaultHstPageFlowControl</code>) resolves the current <strong>Page Flow Definition ID</strong> in the following order:</p>
+
+        <ol>
+          <li>If the current servlet request has a non-blank string attribute by name, <code>org.onehippo.forge.pageflow.core.rt.PageFlowControl.PAGE_FLOW_ID_ATTR_NAME</code>,
+            then it is used.</li>
+          <li>Else if the current <code>HttpSession</code> has a non-blank string attribute by name, <code>org.onehippo.forge.pageflow.core.rt.PageFlowControl.PAGE_FLOW_ID_ATTR_NAME</code>, then it is used.</li>
+
+          <li>Else If the current resolved sitemap item returns a non-blank value for a parameter named <code>pageflowid</code>, it is used.</li>
+          <li>Else if the current resolved mount is associated with a channel, and if the <code>ChannelInfo</code> class of the channel is type of <code>org.onehippo.forge.pageflow.hst.channel.PageFlowSiteInfo</code>, and if the channel info object returns a non-blank value on <code>PageFlowSiteInfo#getDefaultPageFlowId()</code>, then it is used. If the <code>ChannelInfo</code> is not null but is not type of <code>org.onehippo.forge.pageflow.hst.channel.PageFlowSiteInfo</code>, then the channel property named <code>pageflowid</code> will be read. If the value is non-blank, it is used.</li>
+
+          <li>Else if the resolved mount's mount property or normal property named <code>pageflowid</code> will be read. If not blank, it is used.</li>
+          <li>Otherwise, it will fail to resolve the current <strong>Page Flow Definition ID</strong>, and as a result all the Page Flow Module driven request processing will fail.</li>
+        </ol>
+      </subsection>
+
+      <subsection name="(Optional) Configure Page Flow Channel Info for a channel">
+        <p>When you configure a Page Flow Definition for a dedicated channel, you might also want to configure the Page Flow Definition through the Channel Setting window like the following:</p>
+        <img src="images/flowchninfo.png" alt="Page Flow Channel Info" />
+
+        <p>So, you can simply copy <strong>Flow ID</strong> field value in the Page Flow Definition document and paste it into the <strong>Default Page Flow ID</strong> input shown above.</p>
+
+        <p><strong>Page Flow Module</strong> provides a default <a href="https://xmdocumentation.bloomreach.com/library/concepts/channels/define-channel-configuration-parameters.html">Channel Info</a>: <code>org.onehippo.forge.pageflow.hst.channel.PageFlowSiteInfo</code></p>
+
+        <p>To use this Channel Info, you can configure your channel configuration like the following:</p>
+
+        <div>
+          <source><![CDATA[
+          /hst:channel:
+            jcr:primaryType: hst:channel
+            hst:channelinfoclass: org.onehippo.forge.pageflow.hst.channel.PageFlowSiteInfo
+            ...
+        ]]></source>
+        </div>
+      </subsection>
+    </section>
+
+  </body>
+</document>
