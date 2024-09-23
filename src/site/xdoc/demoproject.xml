@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2015-2024 Bloomreach
+
+  Licensed under the Apache License, Version 2.0 (the  "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS"
+  BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE document PUBLIC "-//Apache Software Foundation//DTD XDOC 1.0//EN" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
+<document>
+  <properties>
+    <title>Bloomreach Page Flow Module</title>
+  </properties>
+  <body>
+
+    <section name="Demo Project">
+
+      <subsection name="Build and Run">
+        <p>
+          You can build and install the module locally first in the project root folder.
+        </p>
+        <div>
+          <source><![CDATA[
+          $ mvn clean install
+        ]]></source>
+        </div>
+
+        <p>
+          And you can build and run the Demo project:
+        </p>
+        <div>
+          <source><![CDATA[
+          $ cd demo
+          $ mvn clean verify && mvn -Pcargo.run
+        ]]></source>
+        </div>
+
+        <p>For testing, visit <a href="http://localhost:8080/site/campaign1">http://localhost:8080/site/campaign1</a>.</p>
+      </subsection>
+
+      <subsection name="Demo Page Flow Definition">
+        <p>In the demo project, the Page Flow definition for the channel (<a href="http://localhost:8080/site/campaign1">http://localhost:8080/site/campaign1</a>) is defined in the following document:</p>
+        <img src="images/demoflowdef1.png" alt="Demo Page Flow Definition 1" />
+
+        <p>The above Page Flow Definition document defines all the page states, events and transitions in the document editor.</p>
+
+        <p>It is actually represents the following Finite State Machine diagram:</p>
+        <img src="images/demoflowfsm1.png" alt="Demo Finite State Machine 1" />
+
+        <ul>
+          <li>Visitor starts the journey by visiting the <strong>Landing Page</strong> page state.</li>
+          <li>On "start.quote" event (usually an event is triggerd by a user's action in the step page), it would be transitioned to <strong>Plan Selection</strong> page state.</li>
+          <li>On "family.plan.selected" event, it would be transitioned to <strong>Dependents Entry</strong> page state, which would be transitioned to <strong>Application Entry</strong> page state afterward. Or on "single.plan.selected" event, it would be transitioned to <strong>Application Entry</strong> page state directly.</li>
+          <li>On "application.submitted" event, it would be transitioned to <strong>Review</strong> page state.</li>
+          <li>On "application.reviewed" event, it would be transitioned to <strong>Payment</strong> page state.</li>
+          <li>On "payment.accepted" event, it would be transitioned to <strong>Confirmation</strong> page state, which leads to <strong>Final End</strong> state. Or on "payment.rejected" event, it would stay in the <strong>Payment</strong> page state.</li>
+          <li><strong>Application Entry</strong>, <strong>Review</strong> and <strong>Payment</strong> page states could be transitioned back to the <strong>Landing Page</strong> page state on "cancel.requested" event.</li>
+        </ul>
+      </subsection>
+
+      <subsection name="Example Page Flow Implementation in Demo Project">
+        <p>The demo project includes multiple pages and <a href="https://github.com/bloomreach-forge/page-flow/tree/master/demo/site/src/main/java/org/onehippo/forge/pageflow/demo/campaign/components">HST Components</a> depending on the Page Flow Definition shown above. When you visit <a href="http://localhost:8080/site/campaign1">http://localhost:8080/site/campaign1</a>, you may start a Page Flow instance with the following first step:</p>
+
+        <h4>1. Page State: Landing Page</h4>
+        <p>In this page state, when you click on "Start!" button, it posts the form to the HstComponent's <code>#doAction()</code> method which could trigger a page transition by sending an event.</p>
+        <img src="images/demostep1.png" alt="Page Step 1" />
+
+        <h4>2. Page State: Plan Selection</h4>
+        <p>In this page state, when you click on "Next" button after selecting a plan, it posts the form to the HstComponent's <code>#doAction()</code> method which could trigger a page transition by sending an event.</p>
+        <img src="images/demostep2.png" alt="Page Step 2" />
+
+        <h4>3. Page State: Enter Dependents</h4>
+        <p>In this page state, when you click on "Next" button after adding more than one dependent's first name and last name, it posts the form to the HstComponent's <code>#doAction()</code> method which could trigger a page transition by sending an event.</p>
+        <img src="images/demostep3.png" alt="Page Step 3" />
+
+        <h4>4. Page State: Application Form</h4>
+        <p>In this page state, when you click on "Next" button after entering application information, it posts the form to the HstComponent's <code>#doAction()</code> method which could trigger a page transition by sending an event. If you didn't enter any required inputs, then it wouldn't trigger a transition, resulting in staying in the same page.</p>
+        <p>When you click on "Cancel" button, the HstComponent will send the "cancel.requested" event, which results in going back to the first page state.</p>
+        <img src="images/demostep4.png" alt="Page Step 4" />
+
+        <h4>5. Page State: Review</h4>
+        <p>In this page state, when you click on "Next" button after reviewing the inputs, it posts the form to the HstComponent's <code>#doAction()</code> method which could trigger a page transition by sending an event.</p>
+        <p>When you click on "Cancel" button, the HstComponent will send the "cancel.requested" event, which results in going back to the first page state.</p>
+        <p>The "Next from client-side" button is placed for demonstration purpose. The client-side JavaScript action on the button's click, makes an AJAX call on an <a href="https://xmdocumentation.bloomreach.com/library/concepts/component-development/serve-a-dynamic-resource.html">HST Resource URL</a> to send an event which could trigger a page flow transition, and make a page redirection from the client-side based on the result.</p>
+        <img src="images/demostep5.png" alt="Page Step 5" />
+
+        <h4>6. Page State: Payment Form</h4>
+        <p>In this page state, when you click on "Pay Now!" button after entering the inputs, it posts the form to the HstComponent's <code>#doAction()</code> method which could trigger a page transition by sending an event.</p>
+        <p>When you click on "Cancel" button, the HstComponent will send the "cancel.requested" event, which results in going back to the first page state.</p>
+        <img src="images/demostep6.png" alt="Page Step 6" />
+
+        <h4>7. Page State: Confirmation</h4>
+        <p>In this page state, you completed the Page Flow instance!</p>
+        <img src="images/demostep7.png" alt="Page Step 7" />
+      </subsection>
+    </section>
+
+  </body>
+</document>
