@@ -1,0 +1,10 @@
+org.onehippo.forge.pageflow.cms.editor.field
+org.onehippo.forge.pageflow.core
+org.onehippo.forge.pageflow.core.def
+org.onehippo.forge.pageflow.core.def.impl
+org.onehippo.forge.pageflow.core.rt
+org.onehippo.forge.pageflow.core.rt.impl
+org.onehippo.forge.pageflow.hst
+org.onehippo.forge.pageflow.hst.channel
+org.onehippo.forge.pageflow.hst.def.impl
+org.onehippo.forge.pageflow.hst.sitemapitemhandler

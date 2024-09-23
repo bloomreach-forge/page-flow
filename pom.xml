@@ -27,7 +27,7 @@
   <description>Page Flow</description>
   <groupId>org.onehippo.forge.pageflow</groupId>
   <artifactId>pageflow</artifactId>
-  <version>5.0.1-SNAPSHOT</version>
+  <version>5.0.1-SNAPSHOT</version>>
   <packaging>pom</packaging>
   <url>https://github.com/bloomreach-forge/page-flow</url>
 
@@ -396,10 +396,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
         <version>${maven.plugin.site.version}</version>
-        <configuration>
-          <generateReports>false</generateReports>
-          <outputDirectory>${project.basedir}/target/site</outputDirectory>
-        </configuration>
       </plugin>
     </plugins>
 
