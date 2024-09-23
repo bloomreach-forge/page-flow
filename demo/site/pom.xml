@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.onehippo.forge.pageflow</groupId>
     <artifactId>pageflow-demo</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>pageflow-demo-site</artifactId>
   <packaging>pom</packaging>
