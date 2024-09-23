@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"org.onehippo.forge.pageflow.core.rt.impl","l":"DefaultPageStateMachineTest"},{"p":"org.onehippo.forge.pageflow.core.rt.impl","l":"SpringStateMachineTest"}]
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.onehippo.forge.pageflow.core.rt.impl","l":"DefaultPageStateMachineTest"},{"p":"org.onehippo.forge.pageflow.core.rt.impl","l":"SpringStateMachineTest"}];updateSearchResults();

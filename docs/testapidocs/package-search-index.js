@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.onehippo.forge.pageflow.core.rt.impl"}]
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.onehippo.forge.pageflow.core.rt.impl"}];updateSearchResults();
