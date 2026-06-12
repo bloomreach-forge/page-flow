@@ -18,7 +18,7 @@ package org.onehippo.forge.pageflow.core.def.impl;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.onehippo.forge.pageflow.core.PageFlowException;
 import org.onehippo.forge.pageflow.core.def.PageFlowDefinition;
 import org.onehippo.forge.pageflow.core.def.PageFlowDefinitionRegistry;

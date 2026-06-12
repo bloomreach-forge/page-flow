@@ -24,13 +24,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.onehippo.forge.pageflow.core.PageFlowException;
 import org.onehippo.forge.pageflow.core.rt.PageFlow;
 import org.onehippo.forge.pageflow.core.rt.PageState;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.state.State;
+import reactor.core.publisher.Mono;
 
 public class DefaultPageFlow implements PageFlow {
 
@@ -67,7 +69,7 @@ public class DefaultPageFlow implements PageFlow {
             throw new IllegalStateException("Page flow already started.");
         }
 
-        stateMachine.start();
+        stateMachine.startReactively().block();
         started = true;
     }
 
@@ -82,7 +84,7 @@ public class DefaultPageFlow implements PageFlow {
             throw new IllegalStateException("Page flow already stopped.");
         }
 
-        stateMachine.stop();
+        stateMachine.stopReactively().block();
         stopped = true;
     }
 
@@ -108,7 +110,7 @@ public class DefaultPageFlow implements PageFlow {
             throw new IllegalStateException("Page flow is already stopped.");
         }
 
-        stateMachine.sendEvent(event);
+        stateMachine.sendEvent(Mono.just(MessageBuilder.withPayload(event).build())).blockLast();
     }
 
     @Override

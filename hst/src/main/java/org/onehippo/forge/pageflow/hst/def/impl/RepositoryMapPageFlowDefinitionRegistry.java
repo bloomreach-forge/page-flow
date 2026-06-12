@@ -30,7 +30,7 @@ import javax.jcr.Session;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryResult;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.repository.util.JcrUtils;
 import org.onehippo.forge.pageflow.core.PageFlowException;

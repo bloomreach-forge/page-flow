@@ -18,8 +18,8 @@ package org.onehippo.forge.pageflow.cms.editor.field;
 import java.io.Serializable;
 import java.util.Objects;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Page State Information model.

@@ -20,8 +20,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.onehippo.forge.pageflow.core.rt.ErrorItem;
 import org.onehippo.forge.pageflow.core.rt.Errors;
 
