@@ -20,8 +20,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.onehippo.forge.pageflow.core.rt.Errors;
 import org.onehippo.forge.pageflow.core.rt.PageState;
 

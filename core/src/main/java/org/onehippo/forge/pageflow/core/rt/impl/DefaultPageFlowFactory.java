@@ -23,7 +23,7 @@ import java.util.Map;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.onehippo.forge.pageflow.core.PageFlowException;
 import org.onehippo.forge.pageflow.core.def.PageFlowDefinition;
 import org.onehippo.forge.pageflow.core.def.PageStateDefinition;

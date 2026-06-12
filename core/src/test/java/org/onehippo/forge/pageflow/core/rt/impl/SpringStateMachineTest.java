@@ -19,11 +19,13 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.support.StaticListableBeanFactory;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.action.Action;
 import org.springframework.statemachine.config.StateMachineBuilder;
 import org.springframework.statemachine.config.StateMachineBuilder.Builder;
+import reactor.core.publisher.Mono;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -62,25 +64,25 @@ public class SpringStateMachineTest {
                 .event("2toF").source("S2").target("SF");
 
         StateMachine<String, String> sm = builder.build();
-        sm.start();
+        sm.startReactively().block();
         assertFalse(sm.isComplete());
 
         assertEquals("S0", sm.getState().getId());
         assertFalse(sm.isComplete());
 
-        sm.sendEvent("0to1");
+        sm.sendEvent(Mono.just(MessageBuilder.withPayload("0to1").build())).blockLast();
         assertEquals("S1", sm.getState().getId());
         assertFalse(sm.isComplete());
 
-        sm.sendEvent("1to2");
+        sm.sendEvent(Mono.just(MessageBuilder.withPayload("1to2").build())).blockLast();
         assertEquals("S2", sm.getState().getId());
         assertFalse(sm.isComplete());
 
-        sm.sendEvent("2toF");
+        sm.sendEvent(Mono.just(MessageBuilder.withPayload("2toF").build())).blockLast();
         assertEquals("SF", sm.getState().getId());
         assertTrue(sm.isComplete());
 
-        sm.stop();
+        sm.stopReactively().block();
     }
 
     private Action<String, String> createAction(final String actionName) {

@@ -22,7 +22,7 @@ import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.hippoecm.repository.util.JcrUtils;
 import org.onehippo.forge.exdocpicker.api.ExternalDocumentCollection;
 import org.onehippo.forge.exdocpicker.api.ExternalDocumentServiceContext;

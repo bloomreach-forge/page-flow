@@ -41,8 +41,7 @@ public interface PageFlowSiteInfo extends ChannelInfo {
      */
     @Parameter(
             name = "defaultPageFlowId",
-            defaultValue = "",
-            description = "Default Page Flow ID")
+            defaultValue = "")
     String getDefaultPageFlowId();
 
     /**
@@ -51,8 +50,7 @@ public interface PageFlowSiteInfo extends ChannelInfo {
      */
     @Parameter(
             name = HstNodeTypes.GENERAL_PROPERTY_DEFAULT_RESOURCE_BUNDLE_ID,
-            defaultValue = "",
-            description = "Default Resource Bundle ID(s)")
+            defaultValue = "")
     String getDefaultResourceBundleIds();
 
 }

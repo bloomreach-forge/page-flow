@@ -17,8 +17,8 @@ package org.onehippo.forge.pageflow.core.def.impl;
 
 import java.util.Objects;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.onehippo.forge.pageflow.core.def.PageTransitionDefinition;
 
 /**
