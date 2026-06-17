@@ -27,13 +27,15 @@
   <description>Page Flow</description>
   <groupId>org.onehippo.forge.pageflow</groupId>
   <artifactId>pageflow</artifactId>
-  <version>5.0.1-SNAPSHOT</version>>
+  <version>5.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://github.com/bloomreach-forge/page-flow</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.javaVersion>17</project.build.javaVersion>
+    <!-- default empty argLine; overridden by JaCoCo when the coverage profile is active -->
+    <argLine></argLine>
 
     <spring-statemachine.version>2.0.3.RELEASE</spring-statemachine.version>
     <forge.exdocpickerbase.version>9.0.0</forge.exdocpickerbase.version>
@@ -309,6 +311,41 @@
         <scope>test</scope>
       </dependency>
 
+      <!-- JUnit 5 -->
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.10.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.10.1</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- vintage engine bridges JUnit 4 tests under Surefire's JUnit Platform provider -->
+      <dependency>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+        <version>5.10.1</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- Mockito -->
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>4.11.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>4.11.0</version>
+        <scope>test</scope>
+      </dependency>
+
     </dependencies>
 
   </dependencyManagement>
@@ -386,6 +423,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <!-- argLine may be overridden by the coverage profile via JaCoCo -->
+          <argLine>@{argLine}</argLine>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -410,6 +451,30 @@
   </build>
 
   <profiles>
+    <profile>
+      <id>coverage</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.12</version>
+            <executions>
+              <execution>
+                <id>prepare-agent</id>
+                <goals><goal>prepare-agent</goal></goals>
+              </execution>
+              <execution>
+                <id>report</id>
+                <phase>test</phase>
+                <goals><goal>report</goal></goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
     <!-- Only for generating/publishing GitHub Site Pages into docs/ folder from master branch. -->
     <profile>
       <id>github.pages</id>
